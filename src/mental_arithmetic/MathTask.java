@@ -12,6 +12,10 @@ package mental_arithmetic;
  */
 public class MathTask {
 
+    private static final int MAX_MULTIPLICATION_FACTOR = 10;
+    private static final int MAX_RESULT = 1000;
+
+
     private final int firstNumber;
     private final int secondNumber;
     private final Operator operator;
@@ -63,25 +67,11 @@ public class MathTask {
      * @return a new division task
      */
     public static MathTask createDivisionTask() {
-        int firstNumber;
-        int secondNumber;
-
-        do {
-            firstNumber = Math.round((float) (Math.random() * 1000));
-            secondNumber = Math.round((float) (Math.random() * 10));
-        } while (!isNaturalNumber((double) firstNumber / secondNumber));
+        int result = (int) Math.round(Math.random() * MAX_RESULT);
+        int secondNumber = (int) Math.round(Math.random() * (MAX_MULTIPLICATION_FACTOR - 1)) + 1; // Avoid division by zero
+        int firstNumber = result * secondNumber;
 
         return new MathTask(firstNumber, secondNumber, Operator.DIVISION);
-    }
-
-    /**
-     * Checks if a number is a natural number.
-     *
-     * @param numberToCheck the number to check
-     * @return true if the number is a natural number, false otherwise
-     */
-    private static boolean isNaturalNumber(double numberToCheck) {
-        return numberToCheck > 1 && numberToCheck == Math.floor(numberToCheck);
     }
 
     /**
@@ -90,8 +80,8 @@ public class MathTask {
      * @return a new multiplication task
      */
     public static MathTask createMultiplicationTask() {
-        int smallNumber = Math.round((float) (Math.random() * 10));
-        int largeNumber = Math.round((float) (Math.random() * 1000));
+        int smallNumber = (int) Math.round(Math.random() * MAX_MULTIPLICATION_FACTOR);
+        int largeNumber = (int) Math.round(Math.random() * MAX_RESULT);
 
         int firstNumber;
         int secondNumber;

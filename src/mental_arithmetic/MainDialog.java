@@ -16,11 +16,11 @@ public class MainDialog extends JDialog {
     private final JLabel formulaLabel = new JLabel("A    x    B    =");
     private final JTextField resultTextField = new JTextField(10);
     private final JButton startButton = new JButton("Start");
-    private final JLabel timerLabel = new JLabel("10:00");
+    private JLabel timerLabel = new JLabel("10:00");
     private MathTask currentTask;
-    private final Timer timer = new Timer(1000, null);
-    private final int countdown = 10 * 60;
-    private final JLabel taskCountLabel = new JLabel("0/0");
+    private Timer timer = new Timer(1000, null);
+    private int countdown = 10 * 60;
+    private JLabel taskCountLabel = new JLabel("0/0");
     private int tasksCorrect = 0;
     private int tasksTotal = 0;
 
@@ -34,7 +34,7 @@ public class MainDialog extends JDialog {
     }
 
     /**
-     * Runs the dialog by setting its title, setting size, and making it visible.
+     * Runs the dialog by setting its title, packing it, and making it visible.
      */
     public void run() {
         this.setTitle("Mental Arithmetic");
@@ -117,7 +117,7 @@ public class MainDialog extends JDialog {
 //        } else {
         final String inputText = this.resultTextField.getText().trim();
         if (!inputText.isEmpty() && this.currentTask.getResult() == Integer.parseUnsignedInt(this.resultTextField.getText().trim())) {
-            this.taskCountLabel.setText(String.format("%03d%03d", this.tasksCorrect++, this.tasksTotal));
+            this.tasksCorrect++;
         }
         //news task
         this.taskCountLabel.setText(String.format("%03d/%03d", this.tasksCorrect, this.tasksTotal++));
