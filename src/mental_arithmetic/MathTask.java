@@ -74,6 +74,12 @@ public class MathTask {
         return new MathTask(firstNumber, secondNumber, Operator.DIVISION);
     }
 
+    /**
+     * Checks if a number is a natural number.
+     *
+     * @param numberToCheck the number to check
+     * @return true if the number is a natural number, false otherwise
+     */
     private static boolean isNaturalNumber(double numberToCheck) {
         return numberToCheck > 1 && numberToCheck == Math.floor(numberToCheck);
     }

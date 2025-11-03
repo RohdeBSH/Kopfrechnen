@@ -42,11 +42,17 @@ public class MainDialog extends JDialog {
         this.setVisible(true);
     }
 
+    /**
+     * Initializes the action listeners for the components.
+     */
     private void initActionListeners() {
         this.resultTextField.addActionListener(this::checkResult);
         this.startButton.addActionListener(this::startAction);
     }
 
+    /**
+     * Initializes the components of the dialog.
+     */
     private void initComponents() {
         //timer
         timer.addActionListener(new ActionListener() {
@@ -64,7 +70,7 @@ public class MainDialog extends JDialog {
             }
         });
 
-        //GUI        
+        //GUI
         JPanel content = new JPanel(new BorderLayout(10, 10));
 
         this.gbc.insets = new Insets(4, 4, 4, 4);
@@ -94,6 +100,11 @@ public class MainDialog extends JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
+    /**
+     * Checks the result of the current task.
+     *
+     * @param e the action event
+     */
     private void checkResult(ActionEvent e) {
         if (!this.timer.isRunning()) {
             this.startButton.setEnabled(true);
@@ -121,6 +132,11 @@ public class MainDialog extends JDialog {
 //        }
     }
 
+    /**
+     * Starts the mental arithmetic game.
+     *
+     * @param e the action event
+     */
     private void startAction(ActionEvent e) {
         this.tasksCorrect = 0;
         this.tasksTotal = 0;
