@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mental_arithmetic;
+
+import java.util.Random;
 
 /**
  * Represents a mathematical task, consisting of two numbers and an operator.
@@ -14,11 +11,10 @@ public class MathTask {
 
     private static final int MAX_MULTIPLICATION_FACTOR = 10;
     private static final int MAX_RESULT = 1000;
-
-
     private final int firstNumber;
     private final int secondNumber;
     private final Operator operator;
+    private static final Random numberGenerator = new Random();
 
     /**
      * Constructs a new MathTask.
@@ -67,8 +63,8 @@ public class MathTask {
      * @return a new division task
      */
     public static MathTask createDivisionTask() {
-        int result = (int) Math.round(Math.random() * MAX_RESULT);
-        int secondNumber = (int) Math.round(Math.random() * (MAX_MULTIPLICATION_FACTOR - 1)) + 1; // Avoid division by zero
+        int result = numberGenerator.nextInt(MAX_RESULT + 1);
+        int secondNumber = numberGenerator.nextInt(MAX_MULTIPLICATION_FACTOR) + 1; // Avoid division by zero
         int firstNumber = result * secondNumber;
 
         return new MathTask(firstNumber, secondNumber, Operator.DIVISION);
@@ -80,8 +76,8 @@ public class MathTask {
      * @return a new multiplication task
      */
     public static MathTask createMultiplicationTask() {
-        int smallNumber = (int) Math.round(Math.random() * MAX_MULTIPLICATION_FACTOR);
-        int largeNumber = (int) Math.round(Math.random() * MAX_RESULT);
+        int smallNumber = numberGenerator.nextInt(MAX_MULTIPLICATION_FACTOR + 1);
+        int largeNumber = numberGenerator.nextInt(MAX_RESULT + 1);
 
         int firstNumber;
         int secondNumber;
