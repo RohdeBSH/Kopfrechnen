@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mental_arithmetic;
+
+import java.util.Random;
 
 /**
  * Represents a mathematical task, consisting of two numbers and an operator.
@@ -12,9 +9,12 @@ package mental_arithmetic;
  */
 public class MathTask {
 
+    private static final int MAX_MULTIPLICATION_FACTOR = 10;
+    private static final int MAX_RESULT = 1000;
     private final int firstNumber;
     private final int secondNumber;
     private final Operator operator;
+    private static final Random numberGenerator = new Random();
 
     /**
      * Constructs a new MathTask.
@@ -63,25 +63,11 @@ public class MathTask {
      * @return a new division task
      */
     public static MathTask createDivisionTask() {
-        int firstNumber;
-        int secondNumber;
-
-        do {
-            firstNumber = Math.round((float) (Math.random() * 1000));
-            secondNumber = Math.round((float) (Math.random() * 10));
-        } while (!isNaturalNumber((double) firstNumber / secondNumber));
+        int result = numberGenerator.nextInt(MAX_RESULT + 1);
+        int secondNumber = numberGenerator.nextInt(MAX_MULTIPLICATION_FACTOR) + 1; // Avoid division by zero
+        int firstNumber = result * secondNumber;
 
         return new MathTask(firstNumber, secondNumber, Operator.DIVISION);
-    }
-
-    /**
-     * Checks if a number is a natural number.
-     *
-     * @param numberToCheck the number to check
-     * @return true if the number is a natural number, false otherwise
-     */
-    private static boolean isNaturalNumber(double numberToCheck) {
-        return numberToCheck > 1 && numberToCheck == Math.floor(numberToCheck);
     }
 
     /**
@@ -90,8 +76,8 @@ public class MathTask {
      * @return a new multiplication task
      */
     public static MathTask createMultiplicationTask() {
-        int smallNumber = Math.round((float) (Math.random() * 10));
-        int largeNumber = Math.round((float) (Math.random() * 1000));
+        int smallNumber = numberGenerator.nextInt(MAX_MULTIPLICATION_FACTOR + 1);
+        int largeNumber = numberGenerator.nextInt(MAX_RESULT + 1);
 
         int firstNumber;
         int secondNumber;

@@ -38,7 +38,7 @@ public class MainDialog extends JDialog {
      */
     public void run() {
         this.setTitle("Mental Arithmetic");
-        this.pack();
+        this.setSize(300, 300);
         this.setVisible(true);
     }
 
@@ -117,7 +117,7 @@ public class MainDialog extends JDialog {
 //        } else {
         final String inputText = this.resultTextField.getText().trim();
         if (!inputText.isEmpty() && this.currentTask.getResult() == Integer.parseUnsignedInt(this.resultTextField.getText().trim())) {
-            this.taskCountLabel.setText(String.format("%03d%03d", this.tasksCorrect++, this.tasksTotal));
+            this.tasksCorrect++;
         }
         //news task
         this.taskCountLabel.setText(String.format("%03d/%03d", this.tasksCorrect, this.tasksTotal++));

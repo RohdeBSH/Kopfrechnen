@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mental_arithmetic;
 
 /**
@@ -19,7 +14,6 @@ public class MentalArithmetic {
      */
     public static void main(String[] args) {
         MainDialog test = new MainDialog();
-        test.setSize(600, 600);
         test.run();
 //        for (int i = 1; i <= 120; i++) {
 //            System.out.println(String.format("%s.\t%s", i, createMultiplicationTask()));
